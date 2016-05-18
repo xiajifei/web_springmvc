@@ -23,6 +23,11 @@
 				<td>${user.orderid }</td>
 			</tr>		
 		</c:forEach>
+			<tr>
+				<td>
+					<a href="http://192.168.106.13:6690/vod/20141015/17389e838b92a66f.mp4">video</a>
+				</td>
+			</tr>
 		</table>
 	</form>
 
