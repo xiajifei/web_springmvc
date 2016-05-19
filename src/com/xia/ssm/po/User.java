@@ -1,9 +1,13 @@
 package com.xia.ssm.po;
 
+
 public class User {
 	
 	private String id;
+	//校验名字
+	//@Size(min=1,max=32,message="{user.name.length.errow}")
 	private String name;
+	//@Null(message="{user.orderid.isNull}")
 	private String orderid;
 	public String getId() {
 		return id;

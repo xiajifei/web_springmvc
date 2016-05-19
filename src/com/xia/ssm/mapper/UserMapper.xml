@@ -11,16 +11,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- sql片段 -->
 	<sql id="query_user_where">
 	<!-- 动态sql -->
-		<if test="userCustom!=null">
-			<if test="userCustom.name!=null and userCustom.name!=''">
-				user.name like '张%'
+		<if test="userQueryVo!=null">
+			<if test="userQueryVo.user.name!=null and userQueryVo.user.name!=''">
+				user.name like '￥{name}%'
 			</if>
 		</if>
 		
 	</sql>
 	
 	<select id="findUserList" parameterType="com.xia.ssm.vo.UserQueryVo" resultType="com.xia.ssm.po.UserCustom" >
-		select user.* from user 
+		select user.* from user where
 		<where>
 			<include refid="query_user_where"></include>
 		</where>

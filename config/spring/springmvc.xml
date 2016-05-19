@@ -22,5 +22,24 @@
 		<property name="prefix" value="/WEB-INF/jsp/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-                           
+	<!-- validator校验器 -->
+	<!-- <bean id = "validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		校验器
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator"></property>
+		指定校验使用文件，在文件中配置错误信息，不配置，默认使用classpat下ValidationMessages.properties
+		<property name="validationMessageSource" ref="messageSource"></property>
+	</bean>
+	校验错误信息配置文件
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		配置资源名
+		<property name="basenames">
+			<list>
+				<value>classpath:UserValidationMessages</value>
+			</list>
+		</property>
+		资源文件编码格式
+		<property name="fileEncodings" value="utf-8"/>
+		对资源内容缓冲时间，单位秒
+		<property name="cacheSeconds" value="120"/>
+	</bean> -->
 </beans>
