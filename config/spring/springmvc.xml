@@ -16,30 +16,44 @@
 <!-- 扫描controller -->
 	<context:component-scan base-package="com.xia.ssm.controller"></context:component-scan>   
 <!-- 映射器、适配器 -->
-	<mvc:annotation-driven></mvc:annotation-driven>
-<!-- 驶入解析器 -->
+<!-- 
+	validator:
+	conversion:日期转换
+ -->
+	<mvc:annotation-driven 
+		validator="validator" conversion-service="conversionService"></mvc:annotation-driven>
+<!-- 解析器 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
-	<!-- validator校验器 -->
-	<!-- <bean id = "validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-		校验器
+<!-- 其定义参数绑定 -->
+	<bean id = "conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<!-- 转换器 -->
+		<property name="converters">
+			<list>
+				<bean class=""/>
+			</list>
+		</property>
+	</bean>
+<!-- validator校验器 -->
+	<bean id = "validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<!-- 校验器 -->
 		<property name="providerClass" value="org.hibernate.validator.HibernateValidator"></property>
-		指定校验使用文件，在文件中配置错误信息，不配置，默认使用classpat下ValidationMessages.properties
+		<!-- 指定校验使用文件，在文件中配置错误信息，不配置，默认使用classpat下ValidationMessages.properties -->
 		<property name="validationMessageSource" ref="messageSource"></property>
 	</bean>
-	校验错误信息配置文件
+<!-- 校验错误信息配置文件 -->
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		配置资源名
+		<!-- 配置资源名 -->
 		<property name="basenames">
 			<list>
 				<value>classpath:UserValidationMessages</value>
 			</list>
 		</property>
-		资源文件编码格式
+		<!-- 资源文件编码格式 -->
 		<property name="fileEncodings" value="utf-8"/>
-		对资源内容缓冲时间，单位秒
+		<!-- 对资源内容缓冲时间，单位秒 -->
 		<property name="cacheSeconds" value="120"/>
-	</bean> -->
+	</bean>
 </beans>

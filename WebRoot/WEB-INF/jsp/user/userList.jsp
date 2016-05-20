@@ -15,12 +15,14 @@
 				<td>ID</td>
 				<td>用户名</td>
 				<td>订单ID</td>
+				<td>创建日期</td>
 			</tr>
 		<c:forEach items="${userList}" var="user">
 			<tr>
 				<td>${user.id }</td>
 				<td>${user.name }</td>
 				<td>${user.orderid }</td>
+				<td><fmt:formatDate value = "${user.createdate }" pattern = "yyyy-MM-dd"/></td>
 			</tr>		
 		</c:forEach>
 			<tr>

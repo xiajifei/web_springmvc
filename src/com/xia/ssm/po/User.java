@@ -1,14 +1,24 @@
 package com.xia.ssm.po;
 
+import java.util.Date;
+
+import javax.validation.constraints.Null;
+
+
 
 public class User {
 	
 	private String id;
 	//校验名字
-	//@Size(min=1,max=32,message="{user.name.length.errow}")
+//	@Size(min=1,max=32,message="{user.name.length.errow}")
+	@Null(message="{user.orderid.isNull}")
 	private String name;
-	//@Null(message="{user.orderid.isNull}")
+	
+	@Null(message="{user.orderid.isNull}")
 	private String orderid;
+	
+	private Date createdate;
+	
 	public String getId() {
 		return id;
 	}
@@ -26,6 +36,12 @@ public class User {
 	}
 	public void setOrderid(String orderid) {
 		this.orderid = orderid;
+	}
+	public Date getCreatedate() {
+		return createdate;
+	}
+	public void setCreatedate(Date createdate) {
+		this.createdate = createdate;
 	}
 	
 	

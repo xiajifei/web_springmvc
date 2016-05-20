@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,11 +22,20 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping("/queryUsers")
-	public ModelAndView queryUsers(UserQueryVo userQueryVo){
+	public ModelAndView queryUsers(
+			Model model,@Validated UserQueryVo userQueryVo,BindingResult bindingResult){
 		List<UserCustom> userList = userService.findUserList(userQueryVo);
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("userList", userList);
+		model.addAttribute("userList",userList);
 		modelAndView.setViewName("user/userList");
+		//遍历validated校验错误信息
+		if(bindingResult.hasErrors()){
+			System.out.println("validated错误信息：");
+			List<ObjectError> errors = bindingResult.getAllErrors();
+			for(ObjectError error : errors){
+				System.out.println(error);
+			}
+		}
 		return modelAndView;
 	}
 

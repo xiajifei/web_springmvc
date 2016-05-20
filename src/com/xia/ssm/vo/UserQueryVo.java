@@ -29,8 +29,4 @@ public class UserQueryVo {
 	public void setUserCustom(UserCustom userCustom) {
 		this.userCustom = userCustom;
 	}
-	
-	
-	
-
 }
