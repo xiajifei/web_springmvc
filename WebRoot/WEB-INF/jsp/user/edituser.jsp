@@ -6,42 +6,43 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>用户列表</title>
+<title>修改用户信息</title>
 </head>
 <body>
-	<form action="">
+	<form action="" id = "userEditForm">
 		<table width="100%" border="1">
 			<tr>
 				<td>ID</td>
-				<td>用户名</td>
-				<td>订单ID</td>
-				<td>创建日期</td>
-				<td>操作</td>
+				<td><input value="${user.id }"></td>
 			</tr>
-		<c:forEach items="${userList}" var="user">
 			<tr>
-				<td>${user.id }</td>
-				<td>${user.name }</td>
-				<td>${user.orderid }</td>
-				<td><fmt:formatDate value = "${user.createdate }" pattern = "yyyy-MM-dd"/></td>
-				<td><a href="${pageContext.request.contextPath}/user/findUserById.action?id=${user.id }">编辑</a></td>
-			</tr>		
-		</c:forEach>
+				<td>用户名</td>
+				<td><input value="${user.name }"></td>
+			</tr>
+			<tr>
+				<td>订单ID</td>
+				<td><input value="${user.orderid }"></td>
+			</tr>
+			<tr>
+				<td>创建日期</td>
+				<td><input value="<fmt:formatDate value = "${user.createdate }" pattern = "yyyy-MM-dd"/>"></td>
+			</tr>
 			<tr>
 				<td>
 					<a href="http://192.168.106.13:6690/vod/20141015/17389e838b92a66f.mp4">video</a>
 				</td>
 				<td>
-					<input type="button"  onclick = "addUser()"  value="添加">
+					<input value="保存" type="button" onclick="subUserEdit()">
 				</td>
 			</tr>
 		</table>
 	</form>
 
 </body>
+
 <script type="text/javascript">
-	function addUser(){
-		window.location.href="${pageContext.request.contextPath}/user/inserUserForm.action";
+	function subUserEdit(){
+		$("#userEditForm").submit();
 	}
 </script>
 </html>

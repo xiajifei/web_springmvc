@@ -2,6 +2,8 @@ package com.xia.ssm.po;
 
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Null;
 
 

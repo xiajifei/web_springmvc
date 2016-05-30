@@ -2,6 +2,8 @@ package com.xia.ssm.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.xia.ssm.po.UserCustom;
@@ -16,11 +19,19 @@ import com.xia.ssm.service.UserService;
 import com.xia.ssm.vo.UserQueryVo;
 
 @Controller
+@RequestMapping("user")
 public class UserController {
 	
 	@Autowired
 	private UserService userService;
 	
+	/**
+	 * 根据查询条件查询所有信息
+	 * @param model
+	 * @param userQueryVo
+	 * @param bindingResult
+	 * @return
+	 */
 	@RequestMapping("/queryUsers")
 	public ModelAndView queryUsers(
 			Model model,@Validated UserQueryVo userQueryVo,BindingResult bindingResult){
@@ -38,5 +49,50 @@ public class UserController {
 		}
 		return modelAndView;
 	}
+	
+	/**
+	 * 根据id查找用户
+	 * @param request
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/findUserById")
+	public String findUserById(
+			HttpServletRequest request,@RequestParam(value="id") String id){
+		UserCustom user = userService.findUserById(id);
+		request.setAttribute("user", user);
+		return "user/edituser";
+	}
+	/**
+	 * 定位到插入页面
+	 * @return
+	 */
+	@RequestMapping("/inserUserForm")
+	public String insertUserForm(){
+		return "user/insertuser";
+	}
+	
+	/**
+	 * 插入用户信息
+	 * @param userCustom
+	 * @return
+	 */
+	@RequestMapping("/insertUser") 
+	public String insertUser(UserCustom userCustom){
+		userService.insertUser(userCustom);
+		return "redirect:/user/queryUsers.action";
+	}
+	
+	/**
+	 * 根据id删除用户
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/deleteUserById")
+	public String deleteUserById(String id){
+		userService.deleteUserById(id);
+		return "redirect:/user/queryUsers.action";
+	}
+	
 
 }

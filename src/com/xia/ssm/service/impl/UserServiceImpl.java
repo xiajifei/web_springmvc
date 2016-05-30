@@ -18,5 +18,20 @@ public class UserServiceImpl implements UserService {
 	public List<UserCustom> findUserList(UserQueryVo userQueryVo) {
 		return userMapper.findUserList(userQueryVo);
 	}
+
+	@Override
+	public UserCustom findUserById(String id) {
+		return userMapper.findUserById(id);
+	}
+
+	@Override
+	public void insertUser(UserCustom userCustom) {
+		userMapper.insertUser(userCustom);
+	}
+
+	@Override
+	public void deleteUserById(String id) {
+		userMapper.deleteUserById(id);
+	}
 	
 }

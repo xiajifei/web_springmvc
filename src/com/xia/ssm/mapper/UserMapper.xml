@@ -5,8 +5,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- <mapper namespace="com.xia.mapper.UserMapper"> -->
 <mapper namespace="com.xia.ssm.mapper.UserMapper">
 
+<!-- 缓存 -->
 	<cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
 	<!-- <cache eviction="LRU" type="com.xia.cache.redis.RedisCache" /> -->
+	
+	<!-- 定义parameterMap -->
+	<!-- <parameterMap type="com.xia.ssm.po.UserCustom" id="userMap">
+		<parameter property="" jdbcType=""/>
+	</parameterMap> -->
 	
 	<!-- sql片段 -->
 	<sql id="query_user_where">
@@ -18,11 +24,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</sql>
 	
+	<!-- 根据pojo查询 -->
 	<select id="findUserList" parameterType="com.xia.ssm.vo.UserQueryVo" resultType="com.xia.ssm.po.UserCustom" >
 		select user.* from user
 		<where>
 			<include refid="query_user_where"></include>
 		</where>
 	</select>
+	
+	<!-- 简单类型查询 -->
+	<select id="findUserById" parameterType="java.lang.String" resultType="com.xia.ssm.po.UserCustom">
+		select user.* from user 
+		<if test="_parameter!=null and _parameter!= ''">
+			<where>
+				user.id = #{_parameter}
+			</where>
+		</if>
+	</select>
+	
+	<!-- 插入User -->
+	<insert id="insertUser" parameterType="com.xia.ssm.po.UserCustom">
+		<!-- 自增长插入id对应insert语句不用写id字段 -->
+		<!-- <selectKey order="AFTER" resultType="java.lang.Integer" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey> -->
+		<!-- uuid主键生成 -->
+		<selectKey order="BEFORE" resultType="java.lang.String" keyProperty="id">
+			SELECT UUID()
+		</selectKey>
+		INSERT into user(id, name, orderid, createdate) values(#{id}, #{name} ,#{orderid} ,#{createdate})
+	</insert>
+	
+	<!-- 根据id删除数据 -->
+	<delete id="deleteUserById" parameterType="java.lang.String">
+		DELETE from user
+		<if test="_parameter!=null and _parameter!= ''">
+			<where>
+				user.id = #{_parameter}
+			</where>
+		</if>
+	</delete>
 	
 </mapper>
