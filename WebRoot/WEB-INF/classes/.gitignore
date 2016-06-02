@@ -1,2 +1,9 @@
-/spring/
+/UserValidationMessages.properties
 /com/
+/db.properties
+/ehcache.xml
+/log4j.properties
+/memcached.xml
+/mybatis/
+/redis.properties
+/spring/
