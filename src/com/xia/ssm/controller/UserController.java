@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -94,5 +95,10 @@ public class UserController {
 		return "redirect:/user/queryUsers.action";
 	}
 	
+	/**
+	 * 返回json
+	 */
+	@RequestMapping("/requestJson")
+	public @resp requestJson(@RequestBody UserCustom userCustom){}
 
 }

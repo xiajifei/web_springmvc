@@ -24,7 +24,10 @@
 				<td>${user.name }</td>
 				<td>${user.orderid }</td>
 				<td><fmt:formatDate value = "${user.createdate }" pattern = "yyyy-MM-dd"/></td>
-				<td><a href="${pageContext.request.contextPath}/user/findUserById.action?id=${user.id }">编辑</a></td>
+				<td>
+					<a href="${pageContext.request.contextPath}/user/findUserById.action?id=${user.id }">编辑</a>||
+					<a href="${pageContext.request.contextPath}/user/deleteUserById.action?id=${user.id }">删除</a>
+				</td>
 			</tr>		
 		</c:forEach>
 			<tr>

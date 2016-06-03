@@ -73,36 +73,28 @@ public class SortTest {
 		}
 	}
 	
-	
-	public static void sort(int[] data){  
-        for (int i = 1; i < data.length; i++)  
-        {  
-            int temp = data[i];  
-            int low = 0;  
-            int high = i - 1;  
-            while (low <= high)  
-            {  
-                int mid = (low + high) / 2;  
-                if (temp < data[mid])  
-                {  
-                    high = mid - 1;  
-                }  
-                else  
-                {  
-                    low = mid + 1;  
-                }  
-            }  
-            for (int j = i - 1; j > high; j--)  
-            {  
-                data[j + 1] = data[j];  
-            }  
-            data[high + 1] = temp; // 或者data[low] = temp;  
-  
-        }  
-        for(int i : data){
+	//希尔排序
+	public static  void shellSort(){
+		int arrlen = array.length;
+		for(int increment = arrlen/2;increment>0;increment/=2){
+			//对每组进行排序
+			for(int i = 0;i < increment;i++){
+				for(int m = i+increment;m < arrlen;m+=increment ){
+					int temp = array[m];
+					int k = m - increment;
+					while (k >= 0 && array[k] > temp) {
+						array[k + increment] = array[k];
+                        k -= increment;
+                    }
+					array[k + increment] = temp;
+				}
+			}
+		}
+		for(int i : array){
 			System.out.print("-"+i);
 		}
-    }  
+	}
+	
 	
 	
 	
@@ -111,7 +103,7 @@ public class SortTest {
 //		System.out.println("-------------------");
 //		SortTest.insertSort();
 //		System.out.println("-------------------");
-		SortTest.towInsertSort(array);
-//		SortTest.sort(array);
+//		SortTest.towInsertSort(array);
+		SortTest.shellSort();
 	}
 }
