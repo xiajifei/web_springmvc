@@ -13,14 +13,21 @@ function request(){
 		type:'post',
 		url:'${pageContext.request.contextPath}/user/requestJson.action',
 		contentType:'application/json;charset=utf-8',
-		data:'{"name":"手机","price":"998"}',
+		data:'{"name":"张三","orderid":"1"}',
 		success:function(data){
-			alert(data);
+			alert(data.name);
 		}
 	});
 }
 function response(){
-	
+	$.ajax({
+		type:'post',
+		url:'${pageContext.request.contextPath}/user/reposeJson.action',
+		data:'name=张三&orderid=1',
+		success:function(data){
+			alert(data.name);
+		}
+	});
 }
 
 </script>

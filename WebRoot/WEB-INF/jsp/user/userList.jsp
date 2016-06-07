@@ -9,6 +9,10 @@
 <title>用户列表</title>
 </head>
 <body>
+${username}
+<c:if test="${username!=null }">
+	<a href="${pageContext.request.contextPath }/verify/logout.action">退出</a>
+</c:if>
 	<form action="">
 		<table width="100%" border="1">
 			<tr>

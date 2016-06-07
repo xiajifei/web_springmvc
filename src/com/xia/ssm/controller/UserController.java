@@ -13,11 +13,13 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.xia.ssm.po.UserCustom;
 import com.xia.ssm.service.UserService;
 import com.xia.ssm.vo.UserQueryVo;
+//https://github.com/xiajifei/web_springmvc.git
 
 @Controller
 @RequestMapping("user")
@@ -94,11 +96,31 @@ public class UserController {
 		userService.deleteUserById(id);
 		return "redirect:/user/queryUsers.action";
 	}
-	
+	/**
+	 * 定位到插入页面
+	 * @return
+	 */
+	@RequestMapping("/turnJson")
+	public String turnJson(){
+		return "test/jsonTest";
+	}
 	/**
 	 * 返回json
+	 * @requestBody将请求的json转为对象
+	 * @responseBody将响应的对象转为json
 	 */
 	@RequestMapping("/requestJson")
-	public @resp requestJson(@RequestBody UserCustom userCustom){}
+	public @ResponseBody UserCustom requestJson(@RequestBody UserCustom userCustom){
+		return userCustom;
+	}
+	/**
+	 * 返回json
+	 * @requestBody将请求的json转为对象
+	 * @responseBody将响应的对象转为json
+	 */
+	@RequestMapping("/reposeJson")
+	public @ResponseBody UserCustom reposeJson(UserCustom userCustom){
+		return userCustom;
+	}
 
 }
