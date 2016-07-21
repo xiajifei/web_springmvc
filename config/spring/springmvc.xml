@@ -57,8 +57,8 @@
 		<property name="cacheSeconds" value="120"/>
 	</bean>
 <!-- 拦截器 -->
-	<mvc:interceptors>
-	    <!--登录认证拦截器  -->
+<!-- 	<mvc:interceptors>
+	    登录认证拦截器 
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<bean class="com.xia.ssm.interceptor.LoginInterceptor"></bean>
@@ -71,5 +71,5 @@
 			<mvc:mapping path="/**"/>
 			<bean class="com.xia.ssm.interceptor.HandlerInterceptor2"></bean>
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> -->
 </beans>
