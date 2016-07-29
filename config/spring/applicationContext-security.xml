@@ -11,18 +11,20 @@
 	<security:http  pattern="/index/login.jsp"  security="none"></security:http>
 	
 	<!--use-expressions="true" 的意思是开启表达式 access-denied-page的意思是，当验证权限失败后会跳转到的页面  --> 
-	<security:http  auto-config="true"  >
+	<security:http  auto-config="true" >
 	                <security:intercept-url pattern="/index/welcome.jsp" access="ROLE_ADMIN" />
 	                <security:intercept-url pattern="/**"  access="ROLE_USER" />
+	                <!-- 处理验证失败抛异常org.springframework.security.access.AccessDeniedException: Access is denied -->
+	                <security:access-denied-handler ref="accessDeniedHandler"/>
 	                <!-- 自定义登录页面 -->
 	                <!-- <security:form-login login-page="/index/login.jsp" authentication-failure-url="/index/login.jsp"/> -->
 	</security:http>
 	
      <!-- 配置一个认证管理器 -->
-     <security:authentication-manager>
-     	<security:authentication-provider>
+     <security:authentication-manager >
+     	<security:authentication-provider >
      		<security:user-service>
-     			<security:user name="admin" password="admin" authorities="ROLE_USER"/>
+     			<security:user name="admin" password="admin" authorities="ROLE_USER,ROLE_ADMIN"/>
      			<security:user name="haha" password="haha" authorities="ROLE_USER, ROLE_ADMIN" />
      		</security:user-service>
      	</security:authentication-provider>
@@ -33,5 +35,17 @@
             <!-- 在spring-security-core-3.2.0.M1.jar包中的org.springframework.security下可以找到国际化文件，可以直接拿来 -->
             <property name="basename" value="classpath:messages_zh_CN.properties"></property>
      </bean>     
-
+     
+     <!-- 处理异常 -->
+     <bean id ="accessDeniedHandler"  class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+               <property name="errorPage" value="/page/common/403.jsp"/>
+     </bean>
+     
+<!--      <bean id="authenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider"> 
+            <property name="userDetailsService" ref="customUserDetailsService" /> 
+            <property name="hideUserNotFoundExceptions" value="false" /> 
+            <property name="passwordEncoder" ref="passwordEncoder"/>
+    </bean> -->
+    <bean   id="passwordEncoder"   class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" >
+    </bean> 
 </beans>
