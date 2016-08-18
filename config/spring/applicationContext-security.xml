@@ -17,12 +17,12 @@
 	                <!-- 处理验证失败抛异常org.springframework.security.access.AccessDeniedException: Access is denied -->
 	                <security:access-denied-handler ref="accessDeniedHandler"/>
 	                <!-- 自定义登录页面 -->
-	                <!-- <security:form-login login-page="/index/login.jsp" authentication-failure-url="/index/login.jsp"/> -->
+	                <security:form-login login-page="/index/login.jsp" authentication-failure-url="/index/login.jsp"  default-target-url="/index/default.jsp"/>
 	</security:http>
 	
      <!-- 配置一个认证管理器 -->
      <security:authentication-manager >
-     	<security:authentication-provider >
+     	<security:authentication-provider  >
      		<security:user-service>
      			<security:user name="admin" password="admin" authorities="ROLE_USER,ROLE_ADMIN"/>
      			<security:user name="haha" password="haha" authorities="ROLE_USER, ROLE_ADMIN" />
@@ -41,7 +41,7 @@
                <property name="errorPage" value="/page/common/403.jsp"/>
      </bean>
      
-<!--      <bean id="authenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider"> 
+  <!--    <bean id="authenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider"> 
             <property name="userDetailsService" ref="customUserDetailsService" /> 
             <property name="hideUserNotFoundExceptions" value="false" /> 
             <property name="passwordEncoder" ref="passwordEncoder"/>

@@ -9,10 +9,10 @@
 <title>欢迎页面</title>
 </head>
 <body>
-<h1>default index！</h1>
-		<form action="">
-		
-		</form>
+<h1>default！</h1>
+		<table width="100%" border="1">
+		</table>
+
 </body>
 
 </html>

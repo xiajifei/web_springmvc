@@ -9,21 +9,19 @@
 <title>用户登录</title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath }/verify/login.action" method="post">
+	<form action="../j_spring_security_check" method="post">
 		<table width="100%" border="1">
-			<tr>
-				<td>用户名</td>
-				<td><input type="text" name="username"></td>
-			</tr>
-			<tr>
-				<td>密码</td>
-				<td><input type="password" name="password"></td>
-			</tr>
-			<tr>
-				<td>
-					<input value="登录" type="submit" >
-				</td>
-			</tr>
+		 <tr>  
+			<td><label for="j_username">用户名</label> </td>
+            <td><input id="j_username"  name="j_username" type="text" />   </td>
+          </tr>  
+  
+        <tr>  
+            <td><label for="j_password">密码</label></td>
+            <td><input id="j_password"   name="j_password" type="password" /></td>  
+        </tr>  
+  
+        <tr><td><input type="submit" value="Login" /></td></tr>  
 		</table>
 	</form>
 
