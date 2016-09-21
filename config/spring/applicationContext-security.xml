@@ -21,13 +21,13 @@
 	</security:http>
 	
      <!-- 配置一个认证管理器 -->
-     <security:authentication-manager >
-     	<security:authentication-provider  >
+     <security:authentication-manager alias="">
+     	<!-- <security:authentication-provider  >
      		<security:user-service>
      			<security:user name="admin" password="admin" authorities="ROLE_USER,ROLE_ADMIN"/>
      			<security:user name="haha" password="haha" authorities="ROLE_USER, ROLE_ADMIN" />
      		</security:user-service>
-     	</security:authentication-provider>
+     	</security:authentication-provider> -->
      </security:authentication-manager>  
      
      <!-- 定义上下文返回的消息的国际化 -->               
