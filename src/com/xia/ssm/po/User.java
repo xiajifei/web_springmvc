@@ -13,7 +13,7 @@ public class User {
 	private String id;
 	//校验名字
 //	@Size(min=1,max=32,message="{user.name.length.errow}")
-	@Null(message="{user.orderid.isNull}")
+	@Null(message="{user.name.isNull}")
 	private String name;
 	
 	@Null(message="{user.orderid.isNull}")
