@@ -37,7 +37,21 @@ public class StaticTest {
 	}
 
 	public static void main(String[] args) {
-		StaticTest staticTest = new StaticTest();
-		staticTest.printInfo();
+//		StaticTest staticTest = new StaticTest();
+//		staticTest.printInfo();
+	    
+//	    String a = "abc";
+//	    String b = "abc";
+//	    System.out.println(a==b);
+//	    System.out.println(a.hashCode());
+//	    System.out.println(b.hashCode());
+	    String s = "123";
+	    test(s);
+	    System.out.println("main"+s);
+	}
+	
+	public static void test(String s){
+	     s = s + "456";
+	     System.out.println("test"+s);
 	}
 }

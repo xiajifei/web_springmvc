@@ -2,6 +2,7 @@ package com.xia.ssm.service;
 
 import java.util.List;
 
+import com.xia.base.bean.Page;
 import com.xia.ssm.po.UserCustom;
 import com.xia.ssm.vo.UserQueryVo;
 
@@ -12,6 +13,12 @@ public interface UserService {
 	 * @return
 	 */
 	public List<UserCustom> findUserList(UserQueryVo userQueryVo);
+	/**
+	 * 返回分页
+	 * @param userQueryVo
+	 * @return
+	 */
+	public Page findUserPage(UserQueryVo userQueryVo);
 	/**
 	 * 根据id查询
 	 * @param id

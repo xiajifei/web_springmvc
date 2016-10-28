@@ -42,6 +42,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</select>
 	
+	<!-- 分页查询 -->
+	<!-- <select id="com.xia.ssm.vo.UserQueryVo" parameterType="com.xia.ssm.vo.UserQueryVo" resultType="com.xia.base.bean.Page">
+	   
+	</select> -->
+	
 	<!-- 插入User -->
 	<insert id="insertUser" parameterType="com.xia.ssm.po.UserCustom">
 		<!-- 自增长插入id对应insert语句不用写id字段 -->

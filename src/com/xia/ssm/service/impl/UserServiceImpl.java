@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.xia.base.bean.Page;
 import com.xia.ssm.mapper.UserMapper;
 import com.xia.ssm.po.UserCustom;
 import com.xia.ssm.service.UserService;
@@ -33,5 +34,11 @@ public class UserServiceImpl implements UserService {
 	public void deleteUserById(String id) {
 		userMapper.deleteUserById(id);
 	}
+
+    @Override
+    public Page findUserPage(UserQueryVo userQueryVo) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 	
 }
