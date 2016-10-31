@@ -2,8 +2,10 @@ package com.xia.ssm.service;
 
 import java.util.Date;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
+import javax.mail.MessagingException;
+
 import com.xia.ssm.vo.EmailVo;
+
 
 public interface EmailNotifyService {
 
