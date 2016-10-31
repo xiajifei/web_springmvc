@@ -13,8 +13,9 @@
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context-3.0.xsd " >
                            
+    <context:property-placeholder location="classpath:db.properties"/>
 <!-- 扫描controller -->
-	<context:component-scan base-package="com.xia.ssm.controller"></context:component-scan>   
+	<context:component-scan base-package="com.xia.ssm.*"></context:component-scan>   
 <!-- 映射器、适配器 -->
 <!-- 
 	validator:
@@ -27,6 +28,14 @@
 		<property name="prefix" value="/WEB-INF/jsp/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
+<!-- 配置文件加载 -->
+	<bean id="propertyFactory" class="com.xia.ssm.tools.PropertyFactory" lazy-init="false">
+        <constructor-arg>
+            <list>
+                <value>/db.properties</value>
+            </list>
+        </constructor-arg>
+    </bean>
 <!-- 其定义参数绑定 -->
 	<bean id = "conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<!-- 转换器 -->
