@@ -43,9 +43,14 @@ public class testDemo {
         
         Double a = 0.00;
         System.out.println(0!=a);
+                
+                
+        String str = "http://localhost:8080/lexiugo";
+        
+        System.out.println("subString------"+str.substring(0,4));
+                
+                
     }
 
-//    public int getNum(){
-////        if(){}
-//    }
+
 }

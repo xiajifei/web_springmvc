@@ -17,6 +17,7 @@ import org.apache.commons.logging.LogFactory;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.springframework.stereotype.Service;
 
 /**
  * Description:加载配置文件
@@ -29,7 +30,7 @@ public class PropertyFactory {
     private static java.util.Properties pros = new java.util.Properties();
     
     private static String fileName = "db.properties";
-
+    
     /**
      * @param filePaths
      *            参数文件路径
