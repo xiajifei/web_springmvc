@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+					       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+					       http://www.springframework.org/schema/context 
+					       http://www.springframework.org/schema/context/spring-context-3.0.xsd
+					       http://www.springframework.org/schema/rabbit
+					       http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd" >
+    <description>rabbitmq 连接服务配置</description>
+
+    <!-- 连接配置 -->
+    <context:property-placeholder location="classpath:rabbitmq.properties"/>
+    
+    <!-- <rabbit:connection-factory id="connectionFactory" host="${mq.host}" username="${mq.username}" password="${mq.password}" port="${mq.port}" virtual-host="test"/> -->
+    <!-- <rabbit:connection-factory id="connectionFactory" host="192.168.120.253" username="rabbitadmin" password="123456" port="5672" virtual-host="/"/> -->
+    <rabbit:connection-factory id="connectionFactory" host="192.168.120.253" username="test" password="test" port="5672" virtual-host="test"/>
+    <rabbit:admin connection-factory="connectionFactory"/>
+    
+    <!--申明queue-->
+    <rabbit:queue id="test_queue" name="test_queue" durable="true" auto-delete="false" exclusive="false" />
+    
+    <!--申明exchange交换机并绑定queue-->
+    <rabbit:direct-exchange name="amqpExchange" durable="true" auto-delete="false" id="amqpExchange">
+        <rabbit:bindings>
+            <rabbit:binding queue="test_queue" key="test_queue"/>
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+    
+    <!-- spring template声明-->
+    <rabbit:template exchange="amqpExchange" id="amqpTemplate"  connection-factory="connectionFactory" />
+
+
+
+    <!--consumer配置监听-->
+    <bean id="reveiver" class="com.xia.message.test.Reveiver" />
+    
+    <rabbit:listener-container connection-factory="connectionFactory" acknowledge="auto">
+        <rabbit:listener queues="test_queue" ref="reveiver" method="receiveMessage"/>
+    </rabbit:listener-container>
+</beans>
