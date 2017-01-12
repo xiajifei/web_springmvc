@@ -9,11 +9,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-/** 
-* @author Jia Qiang
-* @version ����ʱ�䣺2016��6��23�� ����3:11:07 
-* ��˵�� 
-*/
 public class JsonUtil {
 	
 	private static final ObjectMapper mapper = new ObjectMapper();

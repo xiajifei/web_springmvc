@@ -38,6 +38,6 @@
     <bean id="reveiver" class="com.xia.message.test.Reveiver" />
     
     <rabbit:listener-container connection-factory="connectionFactory" acknowledge="auto">
-        <rabbit:listener queues="test_queue" ref="reveiver" method="receiveMessage"/>
+        <rabbit:listener queues="test_queue" ref="reveiver"/>
     </rabbit:listener-container>
 </beans>
