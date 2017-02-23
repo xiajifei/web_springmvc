@@ -2,12 +2,14 @@ package com.xia.ssm.algorithm;
 
 public class SortTest {
 	
-	static final int[] array  = {1,3,2,7,6,4,7,9,23,66,23,2,65,34};
+	public void intData(){
+	    int[] array  = {1,3,2,7,6,4,7,9,23,66,23,2,65,34};
+	} 
 	//冒泡
-	public static void bubbleSort(){
+	public static void bubbleSort(int[] array){
 		for(int i = 0,j = array.length;i < j;i++){
 			
-			for(int m = i + 1, n = array.length;m < n;m++){
+			for(int m = i + 1;m < array.length;m++){
 				if(array[i]<array[m]){
 					int temp = array[m];
 					array[m] = array[i];
@@ -22,7 +24,7 @@ public class SortTest {
 	}
 	
 	//直接插入排序
-	public static void insertSort(){
+	public static void insertSort(int[] array){
 		for (int i = 1; i < array.length; i++) {
 			//待插入数
 			int temp = array[i];
@@ -44,7 +46,7 @@ public class SortTest {
 	}
 
 	
-	//二分插入排序
+	//二分插入排序（降序）
 	public static void towInsertSort(int[] data){
 		for(int i = 1;i < data.length; i++)
 		{
@@ -53,12 +55,9 @@ public class SortTest {
 			int right = i-1;
 			while(left<=right){
 				int mid = (left+right)/2;
-				if(data[mid]<temp)
-				{
+				if(data[mid]<temp){
 					right = mid - 1;
-				}
-				else
-				{
+				}else{
 					left = mid + 1;
 				}
 			}
@@ -74,7 +73,7 @@ public class SortTest {
 	}
 	
 	//希尔排序
-	public static  void shellSort(){
+	public static  void shellSort(int[] array){
 		int arrlen = array.length;
 		for(int increment = arrlen/2;increment>0;increment/=2){
 			//对每组进行排序
@@ -91,7 +90,7 @@ public class SortTest {
 			}
 		}
 		for(int i : array){
-			System.out.print("-"+i);
+			System.out.print("-"+i); 
 		}
 	}
 	
@@ -104,6 +103,7 @@ public class SortTest {
 //		SortTest.insertSort();
 //		System.out.println("-------------------");
 //		SortTest.towInsertSort(array);
-		SortTest.shellSort();
+	    int[] array  = {1,3,2,7,6,4,7,9,23,66,23,2,65,34}; 
+		SortTest.insertSort(array);
 	}
 }

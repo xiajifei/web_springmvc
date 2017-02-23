@@ -6,6 +6,7 @@ import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,6 +14,9 @@ public class Reveiver implements MessageListener{
 
     @Autowired
     private MongoOperations mongo;
+    
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
     @Override
     public void onMessage(Message paramMessage) {
@@ -22,7 +26,8 @@ public class Reveiver implements MessageListener{
         TestVo testVo = new TestVo();
         testVo.setMsg("dddddd");
 //        testVo.setId(UUID.randomUUID().toString());
-        mongo.insert(testVo, "messTest");
+//        mongo.insert(testVo, "messTest");
+//        mongoTemplate.insert(testVo, "messTest");
 //        mongo.inse
     }
 
